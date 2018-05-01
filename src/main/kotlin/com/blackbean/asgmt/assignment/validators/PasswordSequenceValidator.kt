@@ -10,9 +10,13 @@ import org.springframework.validation.Validator
  */
 class PasswordSequenceValidator : Validator {
 
+    val re = Regex(".*(\\D+)\\1.*")
+
     override fun validate(target: Any?, errors: Errors) {
         if (target is String) {
-            
+            if (re.matches(target)) {
+                errors.reject("Invalid password contents: found same sequence")
+            }
         }
     }
 

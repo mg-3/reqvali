@@ -27,6 +27,6 @@ class ValidatorService(
     fun checkValidity(input: String, errors: BindingResult) {
         lengthValidator.validate(input, errors)
         mixtureValidator.validate(input, errors)
-//        sequenceValidator.validate(input, errors)
+        sequenceValidator.validate(input, errors)
     }
 }

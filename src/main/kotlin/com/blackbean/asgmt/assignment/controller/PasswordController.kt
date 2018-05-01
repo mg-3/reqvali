@@ -35,7 +35,8 @@ class PasswordController(
         logger.info("Checking password is valid: $inputText")
         validatorService.checkValidity(inputText, bindingResult)
         return if (bindingResult.hasErrors()) {
-            ResponseEntity.ok(CheckResponse(false, bindingResult.allErrors[0].code))
+            ResponseEntity.badRequest()
+                    .body(CheckResponse(false, bindingResult.allErrors[0].code))
         }
         else {
             ResponseEntity.ok(CheckResponse(true, "confirmed"))
